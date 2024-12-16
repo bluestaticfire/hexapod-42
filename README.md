@@ -18,3 +18,8 @@
 
 ![portfolioio](img/platformio.png)
 
+4. Add dependencies 
+5. Add test program in main.c
+6. Click: build icon 
+7. 
+
