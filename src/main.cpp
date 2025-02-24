@@ -51,14 +51,9 @@
 
 /** Motion Path LUT */
 #include "motion.h"
-void exec_motion(int lut_size, int lut[][6][3]);
-void exec_transition(int start_pos[][6][3], int start_pos_idx,
-	int end_pos[][6][3], int end_pos_idx);
-void boot_up_motion(int lut_size, int lut[][6][3]);
 
 Adafruit_PWMServoDriver left_pwm = Adafruit_PWMServoDriver(0x40);
 Adafruit_PWMServoDriver right_pwm = Adafruit_PWMServoDriver(0x41);
-
 
 MotionMode current_motion = MotionMode::Mode_Standby;
 MotionMode next_motion = MotionMode::Mode_Standby;
@@ -86,7 +81,7 @@ void setup() {
   Serial.print("AP IP address: ");
   Serial.println(myIP);
 
-  /* ArduinoOTA
+  ArduinoOTA
   .onStart([]() {
     String type;
     if (ArduinoOTA.getCommand() == U_FLASH) {
@@ -120,7 +115,7 @@ void setup() {
     }
   });
 
-  ArduinoOTA.begin(); */
+  ArduinoOTA.begin();
 
   // Initialize the PCA9685 library
   left_pwm.begin();
