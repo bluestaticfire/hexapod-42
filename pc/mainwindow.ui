@@ -117,7 +117,7 @@
            </widget>
           </item>
           <item>
-           <widget class="QLineEdit" name="lineEdit_TcpClientTargetIP">
+           <widget class="QLineEdit" name="lineEdit_UdpClientTargetIP">
             <property name="minimumSize">
              <size>
               <width>150</width>
@@ -152,7 +152,7 @@
            </widget>
           </item>
           <item>
-           <widget class="QLineEdit" name="lineEdit_TcpClientTargetPort">
+           <widget class="QLineEdit" name="lineEdit_UdpClientTargetPort">
             <property name="minimumSize">
              <size>
               <width>80</width>
@@ -168,7 +168,7 @@
            </widget>
           </item>
           <item>
-           <widget class="QPushButton" name="buttonTcpConnect">
+           <widget class="QPushButton" name="buttonUdpConnect">
             <property name="text">
              <string>Connect</string>
             </property>

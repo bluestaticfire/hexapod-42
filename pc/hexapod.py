@@ -51,7 +51,7 @@ import socket
 from pathlib import Path
 import json
 
-""" from tcpclient import TCPClient""" 
+from udpclient import UDPClient
 from btclient import BluetoothClient
 
 QtWidgets.QApplication.setAttribute(
@@ -545,7 +545,7 @@ class MyApp(QtWidgets.QMainWindow):
 				self.ui.label_LocalIP.text() +
 				':'+self.ui.lineEdit_UdpClientTargetPort.text())
 		self.ui.buttonUdpConnect.setEnabled(True)
-		def on_udp_client_message_ready(self, source, msg):
+	def on_udp_client_message_ready(self, source, msg):
 			self.ui.textBrowserMessage.append(
 				'<div style="color: #2196F3;"><strong>— ' +
 				source +
