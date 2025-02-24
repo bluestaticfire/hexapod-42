@@ -51,7 +51,7 @@ import socket
 from pathlib import Path
 import json
 
-from tcpclient import TCPClient
+""" from tcpclient import TCPClient""" 
 from btclient import BluetoothClient
 
 QtWidgets.QApplication.setAttribute(
@@ -109,7 +109,7 @@ class MyApp(QtWidgets.QMainWindow):
 
 		self.init_ui()
 
-		self.is_tcp_connected = False
+		self.is_udp_connected = False
 		self.is_bluetooth_connected = False
 
 		self.ui.comboBox_Interface.currentIndexChanged.connect(
@@ -119,7 +119,7 @@ class MyApp(QtWidgets.QMainWindow):
 			self.on_interface_refresh_button_clicked
 		)
 
-		self.ui.buttonTcpConnect.clicked.connect(
+		self.ui.buttonUdpConnect.clicked.connect(
 			self.on_udp_client_connect_button_clicked
 		)
 
@@ -278,8 +278,8 @@ class MyApp(QtWidgets.QMainWindow):
 			self.append_message(self.CMD_WALK_0)
 
 	def on_right45_button_clicked(self):
-		if self.is_tcp_connected:
-			self.tcp_client.send(self.CMD_WALK_R45)
+		if self.is_udp_connected:
+			self.udp_client.send(self.CMD_WALK_R45)
 			self.append_message(self.CMD_WALK_R45)
 
 		if self.is_bluetooth_connected:
@@ -287,8 +287,8 @@ class MyApp(QtWidgets.QMainWindow):
 			self.append_message(self.CMD_WALK_R45)
 
 	def on_shiftright_button_clicked(self):
-		if self.is_tcp_connected:
-			self.tcp_client.send(self.CMD_WALK_R90)
+		if self.is_udp_connected:
+			self.udp_client.send(self.CMD_WALK_R90)
 			self.append_message(self.CMD_WALK_R90)
 
 		if self.is_bluetooth_connected:
@@ -296,8 +296,8 @@ class MyApp(QtWidgets.QMainWindow):
 			self.append_message(self.CMD_WALK_R90)
 
 	def on_right135_button_clicked(self):
-		if self.is_tcp_connected:
-			self.tcp_client.send(self.CMD_WALK_R135)
+		if self.is_udp_connected:
+			self.udp_client.send(self.CMD_WALK_R135)
 			self.append_message(self.CMD_WALK_R135)
 
 		if self.is_bluetooth_connected:
@@ -305,8 +305,8 @@ class MyApp(QtWidgets.QMainWindow):
 			self.append_message(self.CMD_WALK_R135)
 
 	def on_backward_button_clicked(self):
-		if self.is_tcp_connected:
-			self.tcp_client.send(self.CMD_WALK_180)
+		if self.is_udp_connected:
+			self.udp_client.send(self.CMD_WALK_180)
 			self.append_message(self.CMD_WALK_180)
 
 		if self.is_bluetooth_connected:
@@ -314,8 +314,8 @@ class MyApp(QtWidgets.QMainWindow):
 			self.append_message(self.CMD_WALK_180)
 
 	def on_left45_button_clicked(self):
-		if self.is_tcp_connected:
-			self.tcp_client.send(self.CMD_WALK_L45)
+		if self.is_udp_connected:
+			self.udp_client.send(self.CMD_WALK_L45)
 			self.append_message(self.CMD_WALK_L45)
 
 		if self.is_bluetooth_connected:
@@ -323,8 +323,8 @@ class MyApp(QtWidgets.QMainWindow):
 			self.append_message(self.CMD_WALK_L45)
 
 	def on_shiftleft_button_clicked(self):
-		if self.is_tcp_connected:
-			self.tcp_client.send(self.CMD_WALK_L90)
+		if self.is_udp_connected:
+			self.udp_client.send(self.CMD_WALK_L90)
 			self.append_message(self.CMD_WALK_L90)
 
 		if self.is_bluetooth_connected:
@@ -332,8 +332,8 @@ class MyApp(QtWidgets.QMainWindow):
 			self.append_message(self.CMD_WALK_L90)
 
 	def on_left135_button_clicked(self):
-		if self.is_tcp_connected:
-			self.tcp_client.send(self.CMD_WALK_L135)
+		if self.is_udp_connected:
+			self.udp_client.send(self.CMD_WALK_L135)
 			self.append_message(self.CMD_WALK_L135)
 
 		if self.is_bluetooth_connected:
@@ -341,8 +341,8 @@ class MyApp(QtWidgets.QMainWindow):
 			self.append_message(self.CMD_WALK_L135)
 
 	def on_fastforward_button_clicked(self):
-		if self.is_tcp_connected:
-			self.tcp_client.send(self.CMD_FASTFORWARD)
+		if self.is_udp_connected:
+			self.udp_client.send(self.CMD_FASTFORWARD)
 			self.append_message(self.CMD_FASTFORWARD)
 
 		if self.is_bluetooth_connected:
@@ -350,8 +350,8 @@ class MyApp(QtWidgets.QMainWindow):
 			self.append_message(self.CMD_FASTFORWARD)
 
 	def on_fastback_button_clicked(self):
-		if self.is_tcp_connected:
-			self.tcp_client.send(self.CMD_FASTBACKWARD)
+		if self.is_udp_connected:
+			self.udp_client.send(self.CMD_FASTBACKWARD)
 			self.append_message(self.CMD_FASTBACKWARD)
 
 		if self.is_bluetooth_connected:
@@ -359,8 +359,8 @@ class MyApp(QtWidgets.QMainWindow):
 			self.append_message(self.CMD_FASTBACKWARD)
 
 	def on_turnleft_button_clicked(self):
-		if self.is_tcp_connected:
-			self.tcp_client.send(self.CMD_TURNLEFT)
+		if self.is_udp_connected:
+			self.udp_client.send(self.CMD_TURNLEFT)
 			self.append_message(self.CMD_TURNLEFT)
 
 		if self.is_bluetooth_connected:
@@ -368,8 +368,8 @@ class MyApp(QtWidgets.QMainWindow):
 			self.append_message(self.CMD_TURNLEFT)
 
 	def on_turnright_button_clicked(self):
-		if self.is_tcp_connected:
-			self.tcp_client.send(self.CMD_TURNRIGHT)
+		if self.is_udp_connected:
+			self.udp_client.send(self.CMD_TURNRIGHT)
 			self.append_message(self.CMD_TURNRIGHT)
 
 		if self.is_bluetooth_connected:
@@ -377,8 +377,8 @@ class MyApp(QtWidgets.QMainWindow):
 			self.append_message(self.CMD_TURNRIGHT)
 
 	def on_rotatex_button_clicked(self):
-		if self.is_tcp_connected:
-			self.tcp_client.send(self.CMD_ROTATEX)
+		if self.is_udp_connected:
+			self.udp_client.send(self.CMD_ROTATEX)
 			self.append_message(self.CMD_ROTATEX)
 
 		if self.is_bluetooth_connected:
@@ -386,8 +386,8 @@ class MyApp(QtWidgets.QMainWindow):
 			self.append_message(self.CMD_ROTATEX)
 
 	def on_rotatey_button_clicked(self):
-		if self.is_tcp_connected:
-			self.tcp_client.send(self.CMD_ROTATEY)
+		if self.is_udp_connected:
+			self.udp_client.send(self.CMD_ROTATEY)
 			self.append_message(self.CMD_ROTATEY)
 
 		if self.is_bluetooth_connected:
@@ -395,8 +395,8 @@ class MyApp(QtWidgets.QMainWindow):
 			self.append_message(self.CMD_ROTATEY)
 
 	def on_rotatez_button_clicked(self):
-		if self.is_tcp_connected:
-			self.tcp_client.send(self.CMD_ROTATEZ)
+		if self.is_udp_connected:
+			self.udp_client.send(self.CMD_ROTATEZ)
 			self.append_message(self.CMD_ROTATEZ)
 
 		if self.is_bluetooth_connected:
@@ -404,8 +404,8 @@ class MyApp(QtWidgets.QMainWindow):
 			self.append_message(self.CMD_ROTATEZ)
 
 	def on_twist_button_clicked(self):
-		if self.is_tcp_connected:
-			self.tcp_client.send(self.CMD_TWIST)
+		if self.is_udp_connected:
+			self.udp_client.send(self.CMD_TWIST)
 			self.append_message(self.CMD_TWIST)
 
 		if self.is_bluetooth_connected:
@@ -413,8 +413,8 @@ class MyApp(QtWidgets.QMainWindow):
 			self.append_message(self.CMD_TWIST)
 
 	def on_climbforward_button_clicked(self):
-		if self.is_tcp_connected:
-			self.tcp_client.send(self.CMD_CLIMBFORWARD)
+		if self.is_udp_connected:
+			self.udp_client.send(self.CMD_CLIMBFORWARD)
 			self.append_message(self.CMD_CLIMBFORWARD)
 
 		if self.is_bluetooth_connected:
@@ -422,8 +422,8 @@ class MyApp(QtWidgets.QMainWindow):
 			self.append_message(self.CMD_CLIMBFORWARD)
 
 	def on_climbbackward_button_clicked(self):
-		if self.is_tcp_connected:
-			self.tcp_client.send(self.CMD_CLIMBBACKWARD)
+		if self.is_udp_connected:
+			self.udp_client.send(self.CMD_CLIMBBACKWARD)
 			self.append_message(self.CMD_CLIMBBACKWARD)
 
 		if self.is_bluetooth_connected:
@@ -481,15 +481,15 @@ class MyApp(QtWidgets.QMainWindow):
 
 	# UDP Client
 	def on_udp_client_connect_button_clicked(self):
-		if self.ui.buttonTcpConnect.text() == 'Connect':
-			self.ui.buttonTcpConnect.setEnabled(False)
-			self.ui.lineEdit_TcpClientTargetIP.setEnabled(False)
-			self.ui.lineEdit_TcpClientTargetPort.setEnabled(False)
+		if self.ui.buttonUdpConnect.text() == 'Connect':
+			self.ui.buttonUdpConnect.setEnabled(False)
+			self.ui.lineEdit_UdpClientTargetIP.setEnabled(False)
+			self.ui.lineEdit_UdpClientTargetPort.setEnabled(False)
 			
 			self.udp_client_thread = QThread()
 			self.udp_client = UDPClient(
-				self.ui.lineEdit_TcpClientTargetIP.text(),
-				int(self.ui.lineEdit_TcpClientTargetPort.text()))
+				self.ui.lineEdit_UdpClientTargetIP.text(),
+				int(self.ui.lineEdit_UdpClientTargetPort.text()))
 				
 			self.udp_client_thread.started.connect(self.udp_client.start)
 			self.udp_client.status.connect(self.on_udp_client_status_update)
@@ -499,12 +499,12 @@ class MyApp(QtWidgets.QMainWindow):
 
 			self.udp_client_thread.start()
 
-			self.config['UDP_Client_IP'] = self.ui.lineEdit_TcpClientTargetIP.text()
-			self.config['UDP_Client_Port'] = self.ui.lineEdit_TcpClientTargetPort.text()
+			self.config['UDP_Client_IP'] = self.ui.lineEdit_UdpClientTargetIP.text()
+			self.config['UDP_Client_Port'] = self.ui.lineEdit_UdpClientTargetPort.text()
 
 			self.save_config()
-		elif self.ui.buttonTcpConnect.text() == 'Disconnect':
-			self.ui.buttonTcpConnect.setEnabled(False)
+		elif self.ui.buttonUdpConnect.text() == 'Disconnect':
+			self.ui.buttonUdpConnect.setEnabled(False)
 			self.udp_client.close()
 
 	def on_udp_client_status_update(self, status, addr):
@@ -513,14 +513,14 @@ class MyApp(QtWidgets.QMainWindow):
 			self.udp_client.status.disconnect()
 			self.udp_client.message.disconnect()
 			
-			self.ui.buttonTcpConnect.setText('Connect')
+			self.ui.buttonUdpConnect.setText('Connect')
 			self.udp_client_thread.quit()
 			
 			self.ui.button_Refresh.setEnabled(True)
 			self.ui.comboBox_Interface.setEnabled(True)
 			
-			self.ui.lineEdit_TcpClientTargetIP.setEnabled(True)
-			self.ui.lineEdit_TcpClientTargetPort.setEnabled(True)
+			self.ui.lineEdit_UdpClientTargetIP.setEnabled(True)
+			self.ui.lineEdit_UdpClientTargetPort.setEnabled(True)
 		if not self.is_bluetooth_connected:
 			self.ui.textBrowserMessage.setEnabled(False)
 			self.ui.groupBox_Control.setEnabled(False)
@@ -530,7 +530,7 @@ class MyApp(QtWidgets.QMainWindow):
 			self.ui.status_bar.showMessage('● Idle')
 		elif status == UDPClient.CONNECTED:
 			self.is_udp_connected = True
-			self.ui.buttonTcpConnect.setText('Disconnect')
+			self.ui.buttonUdpConnect.setText('Disconnect')
 			
 			self.ui.button_Refresh.setEnabled(False)
 			self.ui.comboBox_Interface.setEnabled(False)
@@ -543,17 +543,17 @@ class MyApp(QtWidgets.QMainWindow):
 			self.ui.status_bar.showMessage(
 				'● Connected to ' +
 				self.ui.label_LocalIP.text() +
-				':'+self.ui.lineEdit_TcpClientTargetPort.text())
-		self.ui.buttonTcpConnect.setEnabled(True)
+				':'+self.ui.lineEdit_UdpClientTargetPort.text())
+		self.ui.buttonUdpConnect.setEnabled(True)
 		def on_udp_client_message_ready(self, source, msg):
 			self.ui.textBrowserMessage.append(
-			'<div style="color: #2196F3;"><strong>— ' +
-			source +
-			' —</strong></div>')
+				'<div style="color: #2196F3;"><strong>— ' +
+				source +
+				' —</strong></div>')
 			self.ui.textBrowserMessage.append(
-			'<div style="color: #2196F3;">' +
-			msg +
-			'<br></div>')
+				'<div style="color: #2196F3;">' +
+				msg +
+				'<br></div>')
 
 		# Bluetooth Client
 	def on_bt_client_connect_button_clicked(self):
@@ -596,7 +596,7 @@ class MyApp(QtWidgets.QMainWindow):
 			self.ui.lineEditBtMac.setEnabled(True)
 			self.ui.lineEditBtPort.setEnabled(True)
 
-			if not self.is_tcp_connected:
+			if not self.is_udp_connected:
 				self.ui.textBrowserMessage.setEnabled(False)
 				self.ui.groupBox_Control.setEnabled(False)
 
@@ -604,7 +604,7 @@ class MyApp(QtWidgets.QMainWindow):
 
 		elif status == BluetoothClient.CONNECTED:
 			self.is_bluetooth_connected = True
-			self.on_tcp_client_connect_button_clicked()
+			self.on_udp_client_connect_button_clicked()
 			self.ui.buttonBtConnect.setText('Disconnect')
 			self.ui.groupBox_Control.setEnabled(True)
 			self.ui.textBrowserMessage.setEnabled(True)
