@@ -6,9 +6,8 @@ from udpclient import UDPClient
 class MainApp:
     def __init__(self):
         # Create the UDP client
-        self.udp_client = UDPClient("192.168.4.1", 1234)  # Replace with server IP and port
+        self.udp_client = UDPClient("192.168.4.1", 1234) 
 
-        # Move the UDP client to a separate thread
         self.udp_thread = QThread()
         self.udp_client.moveToThread(self.udp_thread)
 
