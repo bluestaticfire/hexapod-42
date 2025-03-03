@@ -54,11 +54,13 @@ class UDPClient(QObject):
         self.host = host
         self.port = port
         self.sock = None
+        self.running = False
 
     def start(self):
         try:
             self.sock = socket.socket(socket.AF_INET, socket.SOCK_DGRAM)
-            self.sock.setblocking(True)
+            self.sock.setblocking(False)
+            self.running = True
             self.status.emit(self.CONNECTED, f"{self.host}:{self.port}")
         except Exception as e:
             self.status.emit(self.STOP, str(e))
@@ -70,8 +72,22 @@ class UDPClient(QObject):
                 self.message.emit("UDP Client", f"Sent: {message}")
             except Exception as e:
                 self.message.emit("UDP Client", f"Error: {str(e)}")
+                
+    def listen_for_messages(self):
+        while self.running:
+            try:
+                data, addr = self.sock.recvfrom(1024)  # Buffer size is 1024 bytes
+                if data:
+                    self.message.emit("UDP Server", f"Received: {data.decode()}")
+            except BlockingIOError:
+                # No data available, continue listening
+                pass
+            except Exception as e:
+                self.message.emit("UDP Client", f"Error: {str(e)}")
+                self.running = False
 
     def close(self):
+        self.running = False
         if self.sock:
             self.sock.close()
             self.sock = None

@@ -503,6 +503,8 @@ class MyApp(QtWidgets.QMainWindow):
 			self.config['UDP_Client_Port'] = self.ui.lineEdit_UdpClientTargetPort.text()
 
 			self.save_config()
+			print('Error')
+
 		elif self.ui.buttonUdpConnect.text() == 'Disconnect':
 			self.ui.buttonUdpConnect.setEnabled(False)
 			self.udp_client.close()
@@ -515,6 +517,7 @@ class MyApp(QtWidgets.QMainWindow):
 			
 			self.ui.buttonUdpConnect.setText('Connect')
 			self.udp_client_thread.quit()
+			print('Error2')
 			
 			self.ui.button_Refresh.setEnabled(True)
 			self.ui.comboBox_Interface.setEnabled(True)
@@ -528,6 +531,7 @@ class MyApp(QtWidgets.QMainWindow):
 			self.ui.status_bar.clearMessage()
 			self.ui.status_bar.setStyleSheet('color: green')
 			self.ui.status_bar.showMessage('● Idle')
+			print('Error3')
 		elif status == UDPClient.CONNECTED:
 			self.is_udp_connected = True
 			self.ui.buttonUdpConnect.setText('Disconnect')
@@ -635,6 +639,6 @@ class MyApp(QtWidgets.QMainWindow):
 if __name__ == "__main__":
 	QtCore.QCoreApplication.setAttribute(QtCore.Qt.AA_ShareOpenGLContexts)
 	app = QtWidgets.QApplication(sys.argv)
-	window = MyApp()
+	window = MyApp() 
 
 	sys.exit(app.exec())
